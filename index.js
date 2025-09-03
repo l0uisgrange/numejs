@@ -73,23 +73,33 @@ function requireNative() {
   } else if (process.platform === 'android') {
     if (process.arch === 'arm64') {
       try {
-        return require('./package-template.android-arm64.node')
+        return require('./numejs.android-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-android-arm64')
+        const binding = require('numejs-android-arm64')
+        const bindingPackageVersion = require('numejs-android-arm64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'arm') {
       try {
-        return require('./package-template.android-arm-eabi.node')
+        return require('./numejs.android-arm-eabi.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-android-arm-eabi')
+        const binding = require('numejs-android-arm-eabi')
+        const bindingPackageVersion = require('numejs-android-arm-eabi/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -99,34 +109,49 @@ function requireNative() {
   } else if (process.platform === 'win32') {
     if (process.arch === 'x64') {
       try {
-        return require('./package-template.win32-x64-msvc.node')
+        return require('./numejs.win32-x64-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-win32-x64-msvc')
+        const binding = require('numejs-win32-x64-msvc')
+        const bindingPackageVersion = require('numejs-win32-x64-msvc/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'ia32') {
       try {
-        return require('./package-template.win32-ia32-msvc.node')
+        return require('./numejs.win32-ia32-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-win32-ia32-msvc')
+        const binding = require('numejs-win32-ia32-msvc')
+        const bindingPackageVersion = require('numejs-win32-ia32-msvc/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./package-template.win32-arm64-msvc.node')
+        return require('./numejs.win32-arm64-msvc.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-win32-arm64-msvc')
+        const binding = require('numejs-win32-arm64-msvc')
+        const bindingPackageVersion = require('numejs-win32-arm64-msvc/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -135,34 +160,49 @@ function requireNative() {
     }
   } else if (process.platform === 'darwin') {
     try {
-      return require('./package-template.darwin-universal.node')
+      return require('./numejs.darwin-universal.node')
     } catch (e) {
       loadErrors.push(e)
     }
     try {
-      return require('@napi-rs/package-template-darwin-universal')
+      const binding = require('numejs-darwin-universal')
+      const bindingPackageVersion = require('numejs-darwin-universal/package.json').version
+      if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+        throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+      }
+      return binding
     } catch (e) {
       loadErrors.push(e)
     }
     if (process.arch === 'x64') {
       try {
-        return require('./package-template.darwin-x64.node')
+        return require('./numejs.darwin-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-darwin-x64')
+        const binding = require('numejs-darwin-x64')
+        const bindingPackageVersion = require('numejs-darwin-x64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./package-template.darwin-arm64.node')
+        return require('./numejs.darwin-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-darwin-arm64')
+        const binding = require('numejs-darwin-arm64')
+        const bindingPackageVersion = require('numejs-darwin-arm64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -172,23 +212,33 @@ function requireNative() {
   } else if (process.platform === 'freebsd') {
     if (process.arch === 'x64') {
       try {
-        return require('./package-template.freebsd-x64.node')
+        return require('./numejs.freebsd-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-freebsd-x64')
+        const binding = require('numejs-freebsd-x64')
+        const bindingPackageVersion = require('numejs-freebsd-x64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'arm64') {
       try {
-        return require('./package-template.freebsd-arm64.node')
+        return require('./numejs.freebsd-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-freebsd-arm64')
+        const binding = require('numejs-freebsd-arm64')
+        const bindingPackageVersion = require('numejs-freebsd-arm64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -199,23 +249,33 @@ function requireNative() {
     if (process.arch === 'x64') {
       if (isMusl()) {
         try {
-          return require('./package-template.linux-x64-musl.node')
+          return require('./numejs.linux-x64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-x64-musl')
+          const binding = require('numejs-linux-x64-musl')
+          const bindingPackageVersion = require('numejs-linux-x64-musl/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
       } else {
         try {
-          return require('./package-template.linux-x64-gnu.node')
+          return require('./numejs.linux-x64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-x64-gnu')
+          const binding = require('numejs-linux-x64-gnu')
+          const bindingPackageVersion = require('numejs-linux-x64-gnu/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
@@ -223,23 +283,33 @@ function requireNative() {
     } else if (process.arch === 'arm64') {
       if (isMusl()) {
         try {
-          return require('./package-template.linux-arm64-musl.node')
+          return require('./numejs.linux-arm64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-arm64-musl')
+          const binding = require('numejs-linux-arm64-musl')
+          const bindingPackageVersion = require('numejs-linux-arm64-musl/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
       } else {
         try {
-          return require('./package-template.linux-arm64-gnu.node')
+          return require('./numejs.linux-arm64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-arm64-gnu')
+          const binding = require('numejs-linux-arm64-gnu')
+          const bindingPackageVersion = require('numejs-linux-arm64-gnu/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
@@ -247,23 +317,33 @@ function requireNative() {
     } else if (process.arch === 'arm') {
       if (isMusl()) {
         try {
-          return require('./package-template.linux-arm-musleabihf.node')
+          return require('./numejs.linux-arm-musleabihf.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-arm-musleabihf')
+          const binding = require('numejs-linux-arm-musleabihf')
+          const bindingPackageVersion = require('numejs-linux-arm-musleabihf/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
       } else {
         try {
-          return require('./package-template.linux-arm-gnueabihf.node')
+          return require('./numejs.linux-arm-gnueabihf.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-arm-gnueabihf')
+          const binding = require('numejs-linux-arm-gnueabihf')
+          const bindingPackageVersion = require('numejs-linux-arm-gnueabihf/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
@@ -271,46 +351,66 @@ function requireNative() {
     } else if (process.arch === 'riscv64') {
       if (isMusl()) {
         try {
-          return require('./package-template.linux-riscv64-musl.node')
+          return require('./numejs.linux-riscv64-musl.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-riscv64-musl')
+          const binding = require('numejs-linux-riscv64-musl')
+          const bindingPackageVersion = require('numejs-linux-riscv64-musl/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
       } else {
         try {
-          return require('./package-template.linux-riscv64-gnu.node')
+          return require('./numejs.linux-riscv64-gnu.node')
         } catch (e) {
           loadErrors.push(e)
         }
         try {
-          return require('@napi-rs/package-template-linux-riscv64-gnu')
+          const binding = require('numejs-linux-riscv64-gnu')
+          const bindingPackageVersion = require('numejs-linux-riscv64-gnu/package.json').version
+          if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+            throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+          }
+          return binding
         } catch (e) {
           loadErrors.push(e)
         }
       }
     } else if (process.arch === 'ppc64') {
       try {
-        return require('./package-template.linux-ppc64-gnu.node')
+        return require('./numejs.linux-ppc64-gnu.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-linux-ppc64-gnu')
+        const binding = require('numejs-linux-ppc64-gnu')
+        const bindingPackageVersion = require('numejs-linux-ppc64-gnu/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 's390x') {
       try {
-        return require('./package-template.linux-s390x-gnu.node')
+        return require('./numejs.linux-s390x-gnu.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-linux-s390x-gnu')
+        const binding = require('numejs-linux-s390x-gnu')
+        const bindingPackageVersion = require('numejs-linux-s390x-gnu/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -320,34 +420,49 @@ function requireNative() {
   } else if (process.platform === 'openharmony') {
     if (process.arch === 'arm64') {
       try {
-        return require('./package-template.linux-arm64-ohos.node')
+        return require('./numejs.openharmony-arm64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-linux-arm64-ohos')
+        const binding = require('numejs-openharmony-arm64')
+        const bindingPackageVersion = require('numejs-openharmony-arm64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'x64') {
       try {
-        return require('./package-template.linux-x64-ohos.node')
+        return require('./numejs.openharmony-x64.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-linux-x64-ohos')
+        const binding = require('numejs-openharmony-x64')
+        const bindingPackageVersion = require('numejs-openharmony-x64/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
     } else if (process.arch === 'arm') {
       try {
-        return require('./package-template.linux-arm-ohos.node')
+        return require('./numejs.openharmony-arm.node')
       } catch (e) {
         loadErrors.push(e)
       }
       try {
-        return require('@napi-rs/package-template-linux-arm-ohos')
+        const binding = require('numejs-openharmony-arm')
+        const bindingPackageVersion = require('numejs-openharmony-arm/package.json').version
+        if (bindingPackageVersion !== '1.0.0' && process.env.NAPI_RS_ENFORCE_VERSION_CHECK && process.env.NAPI_RS_ENFORCE_VERSION_CHECK !== '0') {
+          throw new Error(`Native binding package version mismatch, expected 1.0.0 but got ${bindingPackageVersion}. You can reinstall dependencies to fix this issue.`)
+        }
+        return binding
       } catch (e) {
         loadErrors.push(e)
       }
@@ -363,7 +478,7 @@ nativeBinding = requireNative()
 
 if (!nativeBinding || process.env.NAPI_RS_FORCE_WASI) {
   try {
-    nativeBinding = require('./package-template.wasi.cjs')
+    nativeBinding = require('./numejs.wasi.cjs')
   } catch (err) {
     if (process.env.NAPI_RS_FORCE_WASI) {
       loadErrors.push(err)
@@ -371,7 +486,7 @@ if (!nativeBinding || process.env.NAPI_RS_FORCE_WASI) {
   }
   if (!nativeBinding) {
     try {
-      nativeBinding = require('@napi-rs/package-template-wasm32-wasi')
+      nativeBinding = require('numejs-wasm32-wasi')
     } catch (err) {
       if (process.env.NAPI_RS_FORCE_WASI) {
         loadErrors.push(err)

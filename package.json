@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/napi-rs/package-template.git"
+    "url": "git+https://github.com/l0uisgrange/numejs.git"
   },
   "license": "MIT",
   "browser": "browser.js",
@@ -50,7 +50,6 @@
     "format:prettier": "prettier . -w",
     "format:toml": "taplo format",
     "format:rs": "cargo fmt",
-    "lint": "oxlint .",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "version": "napi version"
@@ -72,30 +71,11 @@
     "tinybench": "^5.0.0",
     "typescript": "^5.8.3"
   },
-  "lint-staged": {
-    "*.@(js|ts|tsx)": [
-      "oxlint --fix"
-    ],
-    "*.@(js|ts|tsx|yml|yaml|md|json)": [
-      "prettier --write"
-    ],
-    "*.toml": [
-      "taplo format"
-    ]
-  },
   "ava": {
     "extensions": {
       "ts": "module"
     },
-    "timeout": "2m",
-    "workerThreads": false,
-    "environmentVariables": {
-      "OXC_TSCONFIG_PATH": "./test/tsconfig.json"
-    },
-    "nodeArguments": [
-      "--import",
-      "@oxc-node/core/register"
-    ]
+    "timeout": "2m"
   },
   "prettier": {
     "printWidth": 120,
@@ -103,6 +83,5 @@
     "trailingComma": "all",
     "singleQuote": true,
     "arrowParens": "always"
-  },
-  "packageManager": "yarn@4.9.4"
+  }
 }
